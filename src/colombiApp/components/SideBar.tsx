@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import "../../styles/colombiApp/components/SideBar.scss"
 import {  SideBarCard, SideBarMenuItem } from "../../types/types"
 import { classNames } from '../../utils/classes';
@@ -18,10 +18,9 @@ interface SideBarMenuProps {
 
 export const SideBar = ({item, card}: SideBarMenuProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(true);
-    const dispatch = useDispatch()
+    const dispatch: Dispatch<any> = useDispatch()
     
     const onLogout = () => {
-        console.log("Logout ======>")
         dispatch(startLogout())
     }
 

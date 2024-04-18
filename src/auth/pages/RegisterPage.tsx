@@ -5,9 +5,13 @@ import { AuthLayout } from "../layout/AuthLayout";
 import { startCreatingUserWithEmailPassword } from "../../store/auth/thunks";
 import { useNavigate } from 'react-router-dom';
 
+interface FormErrors {
+  message: string;
+}
+
 export const RegisterPage = () => {
- const dispatch =useDispatch()
- const navigate=useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formData = {
     email: "hever@gmail.com",
@@ -15,36 +19,34 @@ export const RegisterPage = () => {
     displayName: "Hever Gelis",
   };
 
-  const [errors, setErrors] = useState({}); // Estado para almacenar los errores de validación
+  const [errors, setErrors] = useState<FormErrors | null>(null);
 
-  const { displayName, email, password, onInputChange, formState } = useForm(formData);
+  const { displayName, email, password, onInputChange }:any = useForm({
+    ...formData,
+    password: "",
+  });
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
 
     if (!displayName || !email || !password) {
       setErrors({ message: "Todos los campos son obligatorios" });
       return;
     }
 
-   
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       setErrors({ message: "Por favor, introduce un correo electrónico válido" });
       return;
     }
 
-
     if (password.length < 6) {
       setErrors({ message: "La contraseña debe tener al menos 6 caracteres" });
       return;
     }
-    dispatch(startCreatingUserWithEmailPassword(formState));
+
+    dispatch<any>(startCreatingUserWithEmailPassword({ email, password, displayName }));
     navigate("/");
-
-
-
   };
 
   return (
@@ -58,18 +60,16 @@ export const RegisterPage = () => {
             name="displayName"
             value={displayName}
             onChange={onInputChange}
-            
           />
         </div>
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input
             placeholder="Correo electrónico"
-            type="text"
+            type="email" // Corrección: Cambiado a type="email"
             name="email"
             value={email}
             onChange={onInputChange}
-            
           />
         </div>
         <div className="input-group">
@@ -80,12 +80,11 @@ export const RegisterPage = () => {
             name="password"
             value={password}
             onChange={onInputChange}
-            
           />
         </div>
-        {errors.message && <div style={{ color: 'red' }}>{errors.message}</div>}
+        {errors && <div style={{ color: 'red' }}>{errors.message}</div>}
         <div className="btn-group">
-          <button onClick={onSubmit} type="submit">Register</button>
+          <button type="submit">Register</button> {/* Corrección: Eliminado el onClick innecesario */}
         </div>
         <div className="link-group">
           <a href="/auth/login">

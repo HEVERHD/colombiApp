@@ -1,46 +1,37 @@
-import { useMemo, useState } from "react";
+import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { AuthLayout } from "../layout/AuthLayout";
-import { useForm } from "../../hooks";
-import { checkingAuthentication, startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth/thunks";
+
+import { startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth/thunks";
+import { RootState } from "../../types/types";
 
 export const LoginPage = () => {
-  const { status, errorMessage } = useSelector(state => state.auth);
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState(""); 
+
+  const { status, errorMessage } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const [errors, setErrors] = useState({}); // Estado para almacenar los errores de validación
+  const [errors, setErrors] = useState({ message: "" }); 
 
-  const { email, password, onInputChange } = useForm({
-    email: "hever@gmail.com",
-    password: "123456"
-  });
-
-  const isAuthenticating = useMemo(() => status === "checking", [status]);
-
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => { 
     e.preventDefault();
-
-    // Validar que los campos no estén vacíos
     if (!email || !password) {
       setErrors({ message: "Todos los campos son obligatorios" });
       return;
     }
-
-    // Si todas las validaciones pasan, puedes enviar los datos al servidor
-    console.log("Datos del formulario:", { email, password });
-    dispatch(startLoginWithEmailPassword({ email, password }));
+    dispatch(startLoginWithEmailPassword({ email, password }) as any); 
   };
 
   const onGoogleSignIn = () => {
     console.log("Google Sign In");
-    dispatch(startGoogleSignIn());
+    dispatch(startGoogleSignIn() as any); 
   };
 
   return (
     <>
       <AuthLayout title="Login">
-        
         <form onSubmit={onSubmit}>
           <div className="input-group">
             <label htmlFor="email">Email</label>
@@ -49,7 +40,7 @@ export const LoginPage = () => {
               id="email"
               name="email"
               value={email}
-              onChange={onInputChange}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-group password">
@@ -59,14 +50,14 @@ export const LoginPage = () => {
               id="password"
               name="password"
               value={password}
-              onChange={onInputChange}
+              onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
           {errorMessage && <div style={{ color: "red", marginBottom: "1rem" }}>{errorMessage}</div>} 
-           {errors.message && <div style={{ color: "red", marginBottom: "1rem" }}>{errors.message}</div>}
+          {errors.message && <div style={{ color: "red", marginBottom: "1rem" }}>{errors.message}</div>}
           <div className="btn-group">
-            <button disabled={isAuthenticating} type="submit">Login</button>
-            <button disabled={isAuthenticating} onClick={onGoogleSignIn} type="button">
+            <button disabled={status === "checking"} type="submit">Login</button> 
+            <button disabled={status === "checking"} onClick={onGoogleSignIn} type="button">
               <AiOutlineGoogle />
               Google
             </button>

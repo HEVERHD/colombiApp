@@ -5,7 +5,7 @@ import { SideBar } from "../components/SideBar"
 import { FcDebt } from "react-icons/fc"
 import { BsFillTicketPerforatedFill } from "react-icons/bs"
 import { BsHouseDoor } from "react-icons/bs"
-import { BiPowerOff } from "react-icons/bi"
+
 
 
 export const ColombiAppLayout = ({children}: {children: React.ReactNode}) => {

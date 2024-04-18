@@ -1,4 +1,4 @@
-import { SideBarCard } from "../../types/types";
+import { RootState, SideBarCard } from "../../types/types";
 import { classNames } from "../../utils/classes";
 import "../../styles/colombiApp/components/SidebarMenuCardView.scss"
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ interface SidebarMenuCardViewProps {
 
 export const SidebarMenuCardView = ({card,isOpen}:SidebarMenuCardViewProps) => {
 
-const {displayName, photoURL,email} =  useSelector( state => state.auth)
+const {displayName, photoURL, email}:any = useSelector((state: RootState) => state.auth);
   return (
     <div className="sidebar_menu_card_view">
         <div className="name"><span> Hola </span> {

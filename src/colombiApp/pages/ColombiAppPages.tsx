@@ -10,10 +10,9 @@ export const ColombiAppPage = () => {
   useEffect(() => {
     const fetchCities = async () => {
       const response = await getCities();
-      const allCities = response?.data;
-      const adaptedCities = allCities.map(adapterCities)
+      const allCities = response?.data as any; // Update the type of allCities using type assertion
+      const adaptedCities: Cities[] = allCities.map(adapterCities); // Ensure adaptedCities has the correct type
       setCities(adaptedCities);
-    
     };
     fetchCities();
   }, []);

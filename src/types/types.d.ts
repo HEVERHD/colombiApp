@@ -16,3 +16,10 @@ export interface SideBarCard{
     url : string;
     email : string;
 }
+
+export interface RootState {
+    auth: {
+        status: string;
+        errorMessage: string;
+    };
+}

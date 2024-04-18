@@ -16,7 +16,7 @@ useEffect(() => {
             const allCities = response?.data;
             setCities([allCities]); 
             setIsLoading(false);
-        } catch (error: unknown) {
+        } catch (error: any) {
             setError(error);
             setIsLoading(false);
         }

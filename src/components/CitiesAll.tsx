@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { getCities } from "../services/getCities";
 import { Cities } from "../models/useCities";
+import { AxiosResponse } from "axios";
 
 export const CitiesAll = () => {
 const [cities, setCities] = useState<Cities[]>([]);
 
 useEffect(() => {
-    const fetchProducts = async () => {
-        const response = await getCities();
-        console.log("🚀 ~ fetchProducts ~ response:", response)
-        setCities(response?.data); 
-    };
-    fetchProducts();
+  const fetchProducts = async () => {
+    const response: AxiosResponse<Cities, any> = await getCities();
+    setCities([response?.data]);
+  };
+  fetchProducts();
 }, []);
 
   return (

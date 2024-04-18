@@ -18,9 +18,7 @@ export const singInWithGoogle = async() => {
         }
         
 
-    } catch (error) {
-        
-        const errorCode = error.code;
+    } catch (error: any) {
         const errorMessage = error.message;
     
         return {
@@ -32,27 +30,29 @@ export const singInWithGoogle = async() => {
 }
 
 
-export const registerUserWithEmailPassword = async({ email, password, displayName }) => {
+export const registerUserWithEmailPassword = async({ email, password, displayName }:any) => {
 
     try {
         const resp = await createUserWithEmailAndPassword( Fireauth, email, password );
         const { uid, photoURL } = resp.user;
 
-        await updateProfile( Fireauth.currentUser, { displayName });
+        if (Fireauth.currentUser) {
+            await updateProfile( Fireauth.currentUser, { displayName });
+        }
 
         return {
             ok: true,
             uid, photoURL, email, displayName
         }
 
-    } catch (error) {
+    } catch (error: any) {
         return { ok: false, errorMessage: error.message }
     }
 
 }
 
 
-export const loginWithEmailPassword = async({ email, password }) => {
+export const loginWithEmailPassword = async({ email, password }:any) => {
 
     try {
         const resp = await signInWithEmailAndPassword( Fireauth, email, password );
@@ -63,7 +63,7 @@ export const loginWithEmailPassword = async({ email, password }) => {
             uid, photoURL, displayName
         }
 
-    } catch (error) {
+    } catch (error: any) {
         return { ok: false, errorMessage: error.message }
     }
 }

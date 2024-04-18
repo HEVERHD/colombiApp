@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { ColombiApp } from "../pages/ColombiAppPages"
-
+import { ColombiApp } from "../../ColombiApp"
 
 export const ColombiAppRoutes = () => {
   return (
