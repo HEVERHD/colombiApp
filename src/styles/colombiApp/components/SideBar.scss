@@ -1,0 +1,117 @@
+@import "/src/styles/common.scss";
+
+
+.sidebar_menu{
+    background-color: #222;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+
+    @include transition(width);
+
+    &.expanded{
+        width: 300px;
+    }
+    &.closed{
+        width: 90px;
+    }
+    .menu_button{
+        display: flex ;
+        justify-content: flex-start;
+
+        .hamburger_icon{
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            width: 68px;
+        }
+    }
+
+    .logout{
+        padding-top: 170px;
+        display: flex ;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 5px;
+        font-size: 14px;
+
+
+        .logout_icon{
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            width: 68px;
+        }
+    
+    }
+}
+
+@media(max-width: 768px){
+    .sidebar_menu{
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+
+    @include transition(width);
+
+    &.expanded{
+        width: 120px;
+    }
+    &.closed{
+        width: 60px;
+    }
+    .menu_button{
+        display: flex ;
+        justify-content: flex-start;
+
+        .hamburger_icon{
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            width: 68px;
+        }
+    }
+
+    .menu_button{
+        display: flex ;
+        justify-content: flex-start;
+
+        .hamburger_icon{
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            width: 115px;
+        }
+    }
+    .logout{
+        padding-top: 124px;
+        display: flex ;
+        justify-content: flex-start;
+        align-items: center;
+        margin: -2px;
+        font-size: 14px;
+        text-decoration: underline;
+    }
+}
+
+}
+
+    

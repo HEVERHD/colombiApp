@@ -1,0 +1,54 @@
+@import"/src/styles/common.scss";
+
+.sidebar_menu_card_view{
+    text-align: center;
+    span{
+        font-family: "Abhaya Libre";
+    
+    }
+
+    .profile{
+        border-radius: 50%;
+        box-sizing: border-box;
+        max-width: 128px;
+    }
+    .profile_info{
+        overflow: hidden;
+        height: 80px;
+        @include transition(height);
+
+        &.closed{
+            height: 0;
+            opacity: 0;
+        }
+    }
+    .name{
+        font-size: 1.2em;
+        font-family: "Filson Pro";  
+    }
+    .title{
+        font-size: 0.8em;
+        font-family: "Neogrotesk Ess";
+    }
+    .url{
+        font-size: 0.8em;
+        font-family: "Abhaya Libre";
+    }
+  
+}
+
+@media(max-width: 768px){
+    .sidebar_menu_card_view{
+        .profile_info{
+            font-size:12px;
+        }
+        .profile{
+            border-radius: 50%;
+            padding: 10px;
+            box-sizing: border-box;
+            max-width: 80px;
+        
+        }
+    }
+
+}
