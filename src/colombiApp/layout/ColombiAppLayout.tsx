@@ -17,44 +17,20 @@ export const ColombiAppLayout = ({children}: {children: React.ReactNode}) => {
             icon: BsHouseDoor,
             label: "Home",
             url : "/",
-        
         },
         {
             id: "2",
             icon: FcDebt,
-            label: "Profile",
-            url : "/",
+            label: "Ciudades",
+            url : "/cities",
         },
         {
             id: "3",
             icon: BsFillTicketPerforatedFill,
-            label: "Settings",
-            url : "/",
+            label: "Presidentes",
+            url : "/presidents",
         },
-        {
-            id: "5",
-            icon: BsFillTicketPerforatedFill,
-            label: "Settings",
-            url : "/",
-        },
-        {
-            id: "6",
-            icon: BsFillTicketPerforatedFill,
-            label: "Settings",
-            url : "/",
-        },
-        {
-            id: "7",
-            icon: BsFillTicketPerforatedFill,
-            label: "Settings",
-            url : "/",
-        },
-        {
-            id: "8",
-            icon: BsFillTicketPerforatedFill,
-            label: "Settings",
-            url : "/",
-        },
+        // ... otros elementos del menú
     ]
     const cards:SideBarCard = {
         id: "01",

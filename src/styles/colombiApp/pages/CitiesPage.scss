@@ -1,0 +1,32 @@
+.cities-list {
+  display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    justify-content: center;
+}
+
+.pagination {
+  ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    justify-content: center;
+
+    li {
+      margin: 0 5px;
+      cursor: pointer;
+      font-size: 14px;
+
+      &.active {
+        font-weight: bold;
+        color: blue; // Color de la página activa
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
