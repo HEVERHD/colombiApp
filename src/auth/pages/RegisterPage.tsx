@@ -9,7 +9,7 @@ interface FormErrors {
   message: string;
 }
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ export const RegisterPage = () => {
     <AuthLayout title="Register">
       <form onSubmit={onSubmit}>
         <div className="input-group">
-          <label htmlFor="displayName">Name</label>
+          <label htmlFor="displayName"> Nombre de usuario</label>
           <input
             placeholder="Nombre completo"
             type="text"
@@ -63,7 +63,7 @@ export const RegisterPage = () => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email"> Correo Electrónico</label>
           <input
             placeholder="Correo electrónico"
             type="email" // Corrección: Cambiado a type="email"
@@ -73,7 +73,7 @@ export const RegisterPage = () => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password"> Contraseña</label>
           <input
             placeholder="Contraseña de usuario"
             type="password"
@@ -87,7 +87,7 @@ export const RegisterPage = () => {
           <button type="submit">Register</button> {/* Corrección: Eliminado el onClick innecesario */}
         </div>
         <div className="link-group">
-          <a href="/auth/login">
+          <a href="/auth/login#/login">
             Ya tienes una cuenta? Inicia sesión aquí
           </a>
         </div>
@@ -95,3 +95,5 @@ export const RegisterPage = () => {
     </AuthLayout>
   );
 };
+
+export default RegisterPage;

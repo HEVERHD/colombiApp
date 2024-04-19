@@ -1,4 +1,4 @@
-import "../../styles/auth/pages/LoginPage.scss";
+import "../../scss/auth/pages/Login.scss";
 
 export const AuthLayout = ({children, title =""}: {children: React.ReactNode, title: string}) => {
     return (
