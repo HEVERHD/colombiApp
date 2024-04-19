@@ -1,4 +1,11 @@
 .container_colombiapp_main{
   display: flex;
     flex-direction: column;
+    background-color: #f5f5f5;
+    .container_colombiapp_content{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }

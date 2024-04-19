@@ -69,7 +69,7 @@
     @include transition(width);
 
     &.expanded{
-        width: 120px;
+        width: 150px;
     }
     &.closed{
         width: 60px;

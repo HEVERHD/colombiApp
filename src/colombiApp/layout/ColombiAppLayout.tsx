@@ -8,7 +8,7 @@ import { BsHouseDoor } from "react-icons/bs"
 
 
 
-export const ColombiAppLayout = ({children}: {children: React.ReactNode}) => {
+export const ColombiAppLayout = ({ children, handleSearch }) =>{
 
 
     const items:SideBarMenuItem[] = [
@@ -30,7 +30,6 @@ export const ColombiAppLayout = ({children}: {children: React.ReactNode}) => {
             label: "Presidentes",
             url : "/presidents",
         },
-        // ... otros elementos del menú
     ]
     const cards:SideBarCard = {
         id: "01",
@@ -45,7 +44,7 @@ export const ColombiAppLayout = ({children}: {children: React.ReactNode}) => {
         <div className="container_colombiapp_main">
 
                 {/* Navbar */}
-                <Navbar />
+                <Navbar handleSearch={handleSearch}/>
 
                {/* Sidebar */}
                     <SideBar item={items} card={cards} /> 
