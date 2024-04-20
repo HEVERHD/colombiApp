@@ -72,7 +72,7 @@ npx serve
 
 ### \*_Pantalla inicial de la App_ y estamos listo para navegar en ColombiApp
 
-<img src="https://raw.githubusercontent.com/HEVERHD/gradiweb/main/Escritorio-PC-1380x720.png" alt="Texto alternativo" width="300">
+<img src="[https://raw.githubusercontent.com/HEVERHD/gradiweb/main/Escritorio-PC-1380x720.png](https://github.com/HEVERHD/colombiApp/blob/main/src/assets/dashColombiApp.png)" alt="Texto alternativo" width="300">
 
 
 
