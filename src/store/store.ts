@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { authSlice } from './store/auth/authSlice';
+import { authSlice } from './auth/authSlice';
 
 const initialState = {
   sidebarShow: true,
