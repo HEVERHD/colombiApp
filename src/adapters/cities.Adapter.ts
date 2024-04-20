@@ -1,4 +1,4 @@
-import { Cities } from "../models/useCities"
+import { Cities } from "../models/cities.model"
 
 export const adapterCities = (apiCities: Cities) => {
     return{

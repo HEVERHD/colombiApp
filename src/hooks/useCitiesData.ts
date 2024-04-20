@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Cities } from "../models/useCities";
+import { Cities } from "../models/cities.model";
 import { getCities } from "../services/getCities";
 
 // import { adaptProduct } from "../adapters/productsApadter";
