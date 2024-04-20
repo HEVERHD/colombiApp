@@ -1,9 +1,10 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
+  cibEsea,
   cilCursor,
   cilDrop,
-  cilPencil,
+  cilFeaturedPlaylist,
   cilPuzzle,
   cilSpeedometer,
   cilStar,
@@ -29,13 +30,13 @@ const _nav = [
     component: CNavItem,
     name: 'Presidente  Actual',
     to: '/theme/typography',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    icon: <CIcon icon={cibEsea} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Lista de  Presidentes',
+    name: 'Lista de ciudades',
     to: '/theme/colors',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilFeaturedPlaylist} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
