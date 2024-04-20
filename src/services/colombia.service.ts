@@ -1,3 +1,4 @@
+import { Aiports } from "../models/aiports.model";
 import { City } from "../models/city.model";
 import { Colombia } from "../models/colombia.model";
 import { Page } from "../models/page.model";
@@ -70,5 +71,19 @@ export default class ColombiaService {
         return undefined;
       });
   }
+
+  public static async getAirports(): Promise<Aiports | undefined> {
+    return fetch(`${ColombiaService.API_ENDPOINT}/Airport`)
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      })
+      .catch((e) => {
+        console.error(`Error getting colombia info:`, e);
+        return undefined;
+      });
+  }
+
+
 
 }
