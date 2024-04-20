@@ -3,6 +3,9 @@ import { Colombia } from "../models/colombia.model";
 import { Page } from "../models/page.model";
 
 export default class ColombiaService {
+  static getTotalDepartments() {
+    throw new Error('Method not implemented.');
+  }
 
   private static readonly API_ENDPOINT: string = 'https://api-colombia.com/api/v1';
 
