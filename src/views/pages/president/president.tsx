@@ -45,9 +45,10 @@ const Typography = () => {
       <CCard className="mb-4">
         <CCardHeader>
           <div key={currentPresident?.id}>
-            <img src={currentPresident?.image} alt={currentPresident?.name} />
+            <h1>Presidente actual</h1>
+            <img src={currentPresident?.image} alt={currentPresident?.name} height={320} />
             <h2>{currentPresident?.name} {currentPresident?.lastName}</h2>
-            <h4>{currentPresident?.politicalParty}</h4>
+            <h4>Partido politico - {currentPresident?.politicalParty}</h4>
             <p>{currentPresident?.description}</p>
           </div>
         </CCardHeader>

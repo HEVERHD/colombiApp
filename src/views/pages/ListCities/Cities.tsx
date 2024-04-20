@@ -26,7 +26,7 @@ const Cities = () => {
       .then((data) => {
         if (data) {
           const adaptedCities = data.data.map((cityData: any) => adapterCities(cityData));
-          setCities([adaptedCities as unknown as City]);
+          setCities([...adaptedCities] as City[]);
           setPageData(data as unknown as Page<null>);
           setLoading(false);
         } else {
