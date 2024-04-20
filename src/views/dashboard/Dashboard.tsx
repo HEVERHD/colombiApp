@@ -1,4 +1,3 @@
-
 import {
   CCard,
   CCardBody,
@@ -14,17 +13,22 @@ import {
   CWidgetStatsF,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilChartPie, } from '@coreui/icons';
+import { cibBuffer, cibMinutemailer, cibPingup, cilChartPie, } from '@coreui/icons';
 import { useEffect, useState } from 'react';
 import ColombiaService from '../../services/colombia.service.js';
 import { Colombia } from '../../models/colombia.model.js';
 import { City } from '../../models/city.model.js';
+import { Aiports } from '../../models/aiports.model.js';
+import { Presidents } from '../../models/president.model.js';
+
 
 const Dashboard = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [colombiaInfo, setColombiaInfo] = useState<Colombia | undefined>(undefined);
   const [cities, setCities] = useState<City[]>([]);
   const [error, setError] = useState<boolean>(false);
+  const [aiports, setAiports] = useState<Aiports[]>([]);
+  const [presidents, setPresidents] = useState<Presidents[]>([]);
 
   const downloadColombiaInfo = async (): Promise<void> => {
     ColombiaService.getColombiaInfo()
@@ -54,11 +58,45 @@ const Dashboard = () => {
       });
   };
 
-  console.log("🚀 ~ Dashboard ~ cities:", cities)
+  const getAiports = async (): Promise<void> => {
+    ColombiaService.getAirports()
+      .then((data) => {
+        setAiports(data as unknown as Aiports[]);
+        setLoading(false);
+      })
+      .catch(() => {
+        setColombiaInfo(undefined);
+        setLoading(false);
+      });
+  };
+
+  const getTotalPresident = async (): Promise<void> => {
+    setLoading(true);
+    ColombiaService.getPresidents()
+      .then((data) => {
+        if (data) {
+          setPresidents(data as unknown as Presidents[]);
+          setLoading(false);
+        } else {
+          setError(true);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        setLoading(false);
+        setError(true);
+      });
+  };
+
+
+
+
   useEffect(() => {
     (async () => {
       await downloadColombiaInfo();
       await getTotalCities();
+      await getAiports();
+      await getTotalPresident();
     })();
   }, []);
 
@@ -74,10 +112,8 @@ const Dashboard = () => {
             </CCol>
           </>
         }
-
         {!loading && colombiaInfo &&
           <>
-
             <CCol sm={12} md={3}>
               <CWidgetStatsF
                 className="mb-3"
@@ -90,7 +126,7 @@ const Dashboard = () => {
               <CWidgetStatsF
                 className="mb-3"
                 color="warning"
-                icon={<CIcon icon={cilChartPie} height={24} />}
+                icon={<CIcon icon={cibBuffer} height={24} />}
                 title="Ciudades"
                 value={cities.length} />
             </CCol>
@@ -98,17 +134,17 @@ const Dashboard = () => {
               <CWidgetStatsF
                 className="mb-3"
                 color="success"
-                icon={<CIcon icon={cilChartPie} height={24} />}
+                icon={<CIcon icon={cibPingup} height={24} />}
                 title="Presidentes"
-                value="30" />
+                value={presidents.length} />
             </CCol>
             <CCol sm={12} md={3}>
               <CWidgetStatsF
                 className="mb-3"
                 color="danger"
-                icon={<CIcon icon={cilChartPie} height={24} />}
+                icon={<CIcon icon={cibMinutemailer} height={24} />}
                 title="Aeropuertos"
-                value="122" />
+                value={aiports.length} />
             </CCol>
             <CCol sm={12} md={8}>
               <CCard className='mb-4'>

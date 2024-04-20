@@ -18,13 +18,17 @@ import CIcon from '@coreui/icons-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startLogout } from '../../store/auth/thunks'
 import { RootState } from '../../types'
+import { useNavigate } from 'react-router-dom'
 
 const AppHeaderDropdown = () => {
   const { photoURL }: any = useSelector((state: RootState) => state.auth);
   const dispatch: Dispatch<any> = useDispatch()
+  const navigate = useNavigate();
 
   const onLogout = () => {
-    dispatch(startLogout())
+    dispatch(startLogout());
+    navigate('/');
+
   }
 
 
@@ -37,7 +41,6 @@ const AppHeaderDropdown = () => {
         <CDropdownHeader className="bg-body-secondary fw-semibold mb-2">
           Mi cuenta
         </CDropdownHeader>
-
         <CDropdownDivider />
         <CDropdownItem onClick={onLogout}>
           <CIcon icon={cilExitToApp} className="me-2" />
