@@ -6,7 +6,7 @@ import { AuthLayout } from "../layout/AuthLayout";
 import { startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth/thunks";
 import { RootState } from "../../types/types";
 
-export const LoginPage = () => {
+export const Login = () => {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState(""); 
 
@@ -63,10 +63,12 @@ export const LoginPage = () => {
             </button>
           </div>
           <div className="link-group">
-            <a href="/auth/register">Create an account</a>
+            <a href="/auth/login#/register">Create an account</a>
           </div>
         </form>
       </AuthLayout>
     </>
   );
 };
+
+export default Login
