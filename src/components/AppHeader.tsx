@@ -13,12 +13,13 @@ import { cibHomify, cilMenu } from '@coreui/icons'
 
 import { AppHeaderDropdown } from './header/index'
 import { set } from '../store'
+import { RootState } from '../types'
 
 const AppHeader = () => {
-  const headerRef = useRef()
+  const headerRef = useRef<HTMLElement>()
   const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.changeState.sidebarShow);
-  const { displayName } = useSelector((state: RootState) => state.auth);
+  const sidebarShow = useSelector((state: RootState) => state.changeState.sidebarShow);
+  const { displayName } = useSelector((state: RootState) => state.auth as unknown as { displayName: string });
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
