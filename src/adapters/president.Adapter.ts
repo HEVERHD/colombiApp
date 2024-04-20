@@ -4,7 +4,7 @@ export const adapterPresidents = (apiPresidents: Presidents) => {
     return {
         id: apiPresidents.id,
         image: apiPresidents.image,
-        name: apiPresidents.name,
+        nameP: apiPresidents.name,
         lastName: apiPresidents.lastName,
         startPeriodDate: new Date(apiPresidents.startPeriodDate),
         endPeriodDate: apiPresidents.endPeriodDate ? new Date(apiPresidents.endPeriodDate) : null,

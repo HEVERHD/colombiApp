@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   CCloseButton,
@@ -8,20 +8,23 @@ import {
   CSidebarFooter,
   CSidebarHeader,
   CSidebarToggler,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
 
-import { AppSidebarNav } from './AppSidebarNav'
+import { AppSidebarNav } from './AppSidebarNav';
 
-// sidebar nav config
-import navigation from '../_nav'
-import { set } from '../store'
-import { RootState } from '../types'
+import navigation from '../_nav';
+import { set } from '../store';
+import { RootState } from '../types';
 
 const AppSidebar = () => {
-  const dispatch = useDispatch()
-  const unfoldable = useSelector((state: RootState) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state: RootState) => state.sidebarShow)
+  const dispatch = useDispatch();
+  const unfoldable = useSelector((state: RootState) => state.sidebarUnfoldable);
+  const sidebarShow = useSelector((state: RootState) => state.sidebarShow);
+
+  const toggleSidebar = () => {
+    dispatch(set({ sidebarShow: !sidebarShow }));
+  };
 
   return (
     <CSidebar
@@ -42,17 +45,15 @@ const AppSidebar = () => {
         <CCloseButton
           className="d-lg-none"
           dark
-          onClick={() => dispatch(set({ sidebarShow: !sidebarShow }))} // Cambia aquí
+          onClick={() => dispatch(set({ sidebarShow: !sidebarShow }))}
         />
       </CSidebarHeader>
       <AppSidebarNav items={navigation} />
       <CSidebarFooter className="border-top d-none d-lg-flex">
-        <CSidebarToggler
-          onClick={() => dispatch(set({ sidebarShow: !sidebarShow }))} // Cambia aquí
-        />
+        <CSidebarToggler onClick={toggleSidebar} />
       </CSidebarFooter>
     </CSidebar>
-  )
-}
+  );
+};
 
-export default React.memo(AppSidebar)
+export default React.memo(AppSidebar);

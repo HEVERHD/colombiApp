@@ -2,20 +2,14 @@ import CIcon from '@coreui/icons-react'
 import {
   cibEsea,
   cilFeaturedPlaylist,
-  cilSpeedometer,
 } from '@coreui/icons'
 import { CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
   {
     component: CNavItem,
-    name: 'ColombiApp',
+    name: 'ColombiApp 2024',
     to: '/',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
   },
   {
     component: CNavTitle,

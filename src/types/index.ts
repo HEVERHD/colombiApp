@@ -18,6 +18,7 @@ export interface SideBarCard {
 }
 
 export interface RootState {
+    theme: any;
     sidebarShow: any;
     sidebarUnfoldable: any;
     changeState: any;

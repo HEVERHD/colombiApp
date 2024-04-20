@@ -21,7 +21,7 @@ const RegisterPage = () => {
 
   const [errors, setErrors] = useState<FormErrors | null>(null);
 
-  const { displayName, email, password, onInputChange }:any = useForm({
+  const { displayName, email, password, onInputChange }: any = useForm({
     ...formData,
     password: "",
   });
@@ -84,7 +84,9 @@ const RegisterPage = () => {
         </div>
         {errors && <div style={{ color: 'red' }}>{errors.message}</div>}
         <div className="btn-group">
-          <button type="submit">Register</button> {/* Corrección: Eliminado el onClick innecesario */}
+          <button type="submit">
+            Registrarse
+          </button>
         </div>
         <div className="link-group">
           <a href="/auth/login">

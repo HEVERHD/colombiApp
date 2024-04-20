@@ -1,7 +1,7 @@
 import { Cities } from "../models/cities.model"
 
 export const adapterCities = (apiCities: Cities) => {
-    return{
+    return {
         id: apiCities.id,
         name: apiCities.name,
         country: apiCities.department,
