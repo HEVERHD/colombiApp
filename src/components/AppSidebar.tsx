@@ -14,7 +14,7 @@ import CIcon from '@coreui/icons-react';
 import { AppSidebarNav } from './AppSidebarNav';
 
 import navigation from '../_nav';
-import { set } from '../store';
+import { set } from '../store/store';
 import { RootState } from '../types';
 
 const AppSidebar = () => {

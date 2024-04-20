@@ -12,7 +12,7 @@ import CIcon from '@coreui/icons-react'
 import { cibHomify, cilMenu } from '@coreui/icons'
 
 import { AppHeaderDropdown } from './header/index'
-import { set } from '../store'
+import { set } from '../store/store'
 import { RootState } from '../types'
 
 const AppHeader = () => {
