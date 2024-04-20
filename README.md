@@ -34,7 +34,7 @@ Para iniciar a codificar, recuerde que se usa [GitHub Flow](https://guides.githu
 
 No haga cambios directamente sobre la rama `develop` ni tampoco sobre `main`, siempre cree una nueva rama `feature` y una vez realizado `git push` al servidor con sus cambios, cree un pull request con los cambios hacia `develop` para que otra persona del equipo o en su defecto usted mismo, revise y apruebe el PR.
 
-### **Iniciar la Aplicación Landing de GradiWeb**
+### **Iniciar la Aplicación ColombiApp**
 
 ##### **npm**
 

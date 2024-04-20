@@ -1,38 +1,37 @@
 import { useEffect, useState } from 'react';
-import { CRow, CCol, CCard, CCardHeader, CCardBody, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CPagination, CPaginationItem, CImage } from '@coreui/react';
+import { CRow, CCol, CCard, CCardHeader, CCardBody, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CImage } from '@coreui/react';
 import ColombiaService from '../../../services/colombia.service';
 
 import { Presidents } from '../../../models/president.model';
-const PresidentsList = () => {
 
+const PresidentsList = () => {
   const [presidents, setPresidents] = useState<Presidents[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-
-
   const getTotalPresident = async (): Promise<void> => {
+    setLoading(true);
     ColombiaService.getPresidents()
       .then((data) => {
         if (data) {
-          setPresidents(data);
+          setPresidents(data as unknown as Presidents[]);
           setLoading(false);
         } else {
           setError(true);
+          setLoading(false);
         }
       })
       .catch(() => {
         setLoading(false);
+        setError(true);
       });
   };
-
 
   useEffect(() => {
     (async () => {
       await getTotalPresident();
     })();
   }, []);
-
 
   return (
     <>
@@ -41,7 +40,6 @@ const PresidentsList = () => {
           Lista de presidentes de Colombia
         </CCardHeader>
         <CCardBody>
-
           <CRow>
             <CCol xs={12}>
               <CTable>
@@ -55,18 +53,25 @@ const PresidentsList = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {presidents.map((president, index) => (
-                    <CTableRow key={president.id}>
-
-                      <CImage alt={president.name} src={president.image} width="80" height="80" className="rounded-circle" />
-
-
-                      <CTableDataCell>{president.name}</CTableDataCell>
-                      <CTableDataCell>{president.lastName}</CTableDataCell>
-                      <CTableDataCell>{president.startPeriodDate}</CTableDataCell>
-                      <CTableDataCell>{president.politicalParty}</CTableDataCell>
-                    </CTableRow>
-                  ))}
+                  {loading ? (
+                    <tr>
+                      <td colSpan={5}>Cargando...</td>
+                    </tr>
+                  ) : error ? (
+                    <tr>
+                      <td colSpan={5}>Error al cargar los datos.</td>
+                    </tr>
+                  ) : (
+                    presidents.map((president) => (
+                      <CTableRow key={president.id}>
+                        <CImage alt={president.name} src={president.image} width="80" height="80" className="rounded-circle" />
+                        <CTableDataCell>{president.name}</CTableDataCell>
+                        <CTableDataCell>{president.lastName}</CTableDataCell>
+                        <CTableDataCell>{president.startPeriodDate.toString()}</CTableDataCell>
+                        <CTableDataCell>{president.politicalParty}</CTableDataCell>
+                      </CTableRow>
+                    ))
+                  )}
                 </CTableBody>
               </CTable>
             </CCol>
@@ -80,5 +85,3 @@ const PresidentsList = () => {
 };
 
 export default PresidentsList;
-
-
