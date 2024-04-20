@@ -57,7 +57,6 @@ const Dashboard = () => {
         setError(true);
       });
   };
-
   const getAiports = async (): Promise<void> => {
     ColombiaService.getAirports()
       .then((data) => {
