@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
 
-export interface SideBarMenuItem{
+export interface SideBarMenuItem {
     id: string;
     icon: IconType;
     label: string;
@@ -8,16 +8,17 @@ export interface SideBarMenuItem{
     onClick?: () => void | undefined;
 }
 
-export interface SideBarCard{
+export interface SideBarCard {
     id: string;
-    displayName : string;
-    photoUrl : string;
-    title : string;
-    url : string;
-    email : string;
+    displayName: string;
+    photoUrl: string;
+    title: string;
+    url: string;
+    email: string;
 }
 
 export interface RootState {
+    changeState: any;
     auth: {
         status: string;
         errorMessage: string;

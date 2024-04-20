@@ -131,24 +131,32 @@ const Dashboard = () => {
                         <CTableDataCell>{colombiaInfo.stateCapital}</CTableDataCell>
                       </CTableRow>
                       <CTableRow>
-                        <CTableDataCell><b>Mark</b></CTableDataCell>
-                        <CTableDataCell>Otto</CTableDataCell>
+                        <CTableDataCell>
+                          <b>
+                            Población
+                          </b>
+                        </CTableDataCell>
+                        <CTableDataCell>{colombiaInfo.population}  hab.</CTableDataCell>
                       </CTableRow>
                       <CTableRow>
-                        <CTableDataCell><b>Mark</b></CTableDataCell>
-                        <CTableDataCell>Otto</CTableDataCell>
+                        <CTableDataCell><b>Dominio web</b></CTableDataCell>
+                        <CTableDataCell>{colombiaInfo.internetDomain}</CTableDataCell>
                       </CTableRow>
                       <CTableRow>
-                        <CTableDataCell><b>Mark</b></CTableDataCell>
-                        <CTableDataCell>Otto</CTableDataCell>
+                        <CTableDataCell><b>Lenguage</b></CTableDataCell>
+                        <CTableDataCell>{colombiaInfo.languages[0]}</CTableDataCell>
                       </CTableRow>
                       <CTableRow>
-                        <CTableDataCell><b>Mark</b></CTableDataCell>
-                        <CTableDataCell>Otto</CTableDataCell>
+                        <CTableDataCell><b>
+                          Zona horaria
+                        </b></CTableDataCell>
+                        <CTableDataCell>{colombiaInfo.timeZone}</CTableDataCell>
                       </CTableRow>
                       <CTableRow>
-                        <CTableDataCell><b>Mark</b></CTableDataCell>
-                        <CTableDataCell>Otto</CTableDataCell>
+                        <CTableDataCell><b>
+                          Superficie
+                        </b></CTableDataCell>
+                        <CTableDataCell>{colombiaInfo.surface}  km²</CTableDataCell>
                       </CTableRow>
                     </CTableBody>
                   </CTable>

@@ -10,6 +10,7 @@
     width: 40rem;
     margin: 2rem auto; 
     margin-top: 10rem;
+    background-color:#272e3a;
 }
 
 .logo {
@@ -95,7 +96,7 @@ form{
 
 @media only screen and (max-width: 375px) {
     .container__login {
-        background-color: red;
+        background-color: #273F43;
         width: 90%;
     }
 }
