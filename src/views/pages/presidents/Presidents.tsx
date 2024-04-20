@@ -4,6 +4,7 @@ import ColombiaService from '../../../services/colombia.service';
 
 import { Presidents } from '../../../models/president.model';
 
+
 const PresidentsList = () => {
   const [presidents, setPresidents] = useState<Presidents[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -15,6 +16,7 @@ const PresidentsList = () => {
       .then((data) => {
         if (data) {
           setPresidents(data as unknown as Presidents[]);
+
           setLoading(false);
         } else {
           setError(true);

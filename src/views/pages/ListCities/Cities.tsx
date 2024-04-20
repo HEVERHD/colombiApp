@@ -3,6 +3,7 @@ import { CRow, CCol, CCard, CCardHeader, CCardBody, CFormInput, CButton, CTable,
 import ColombiaService from '../../../services/colombia.service';
 import { City } from '../../../models/city.model';
 import { Page } from '../../../models/page.model';
+import { adapterCities } from '../../../adapters/cities.Adapter';
 
 const Cities = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,7 +25,8 @@ const Cities = () => {
     ColombiaService.getCities(page)
       .then((data) => {
         if (data) {
-          setCities(data.data);
+          const adaptedCities = data.data.map((cityData: any) => adapterCities(cityData));
+          setCities(adaptedCities);
           setPageData(data as unknown as Page<null>);
           setLoading(false);
         } else {

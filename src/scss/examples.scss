@@ -5,6 +5,7 @@ $enable-deprecation-messages: false; /* stylelint-disable-line scss/dollar-varia
 @import "@coreui/coreui/scss/variables";
 @import "@coreui/coreui/scss/mixins";
 
+
 .example {
   &:not(:first-child) {
     margin-top: 1.5rem;

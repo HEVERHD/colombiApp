@@ -149,10 +149,10 @@ const Dashboard = () => {
               <CCard className='mb-4'>
                 <CCardHeader>{colombiaInfo.name}</CCardHeader>
                 <CCardBody>
-                  <p>{colombiaInfo.description}</p>
-                  <div className="text-center">
-                    <CImage rounded src={colombiaInfo.flags[1]} width={300} height={200} />
+                  <div className="text-center mb-4 flag">
+                    <CImage rounded src={colombiaInfo.flags[1]} width={280} height={200} />
                   </div>
+                  <p>{colombiaInfo.description}</p>
                 </CCardBody>
               </CCard>
             </CCol>

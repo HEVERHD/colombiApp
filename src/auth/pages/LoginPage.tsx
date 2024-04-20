@@ -26,17 +26,21 @@ export const Login = () => {
   };
 
   const onGoogleSignIn = () => {
-    console.log("Google Sign In");
     dispatch(startGoogleSignIn() as any);
   };
 
   return (
     <>
-      <AuthLayout title="Login">
+      <AuthLayout
+        title="Inicia sesión" >
+
         <form onSubmit={onSubmit}>
           <div className="input-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">
+              Correo electrónico
+            </label>
             <input
+              placeholder="Correo electrónico"
               type="email"
               id="email"
               name="email"
@@ -45,8 +49,11 @@ export const Login = () => {
             />
           </div>
           <div className="input-group password">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              Contraseña
+            </label>
             <input
+              placeholder="Contraseña"
               type="password"
               id="password"
               name="password"
@@ -57,7 +64,9 @@ export const Login = () => {
           {errorMessage && <div style={{ color: "red", marginBottom: "1rem" }}>{errorMessage}</div>}
           {errors.message && <div style={{ color: "red", marginBottom: "1rem" }}>{errors.message}</div>}
           <div className="btn-group">
-            <button disabled={status === "checking"} type="submit">Login</button>
+            <button disabled={status === "checking"} type="submit">
+              Ingresar
+            </button>
             <button disabled={status === "checking"} onClick={onGoogleSignIn} type="button">
               <AiOutlineGoogle />
               Google
