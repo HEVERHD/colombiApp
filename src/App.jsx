@@ -10,20 +10,20 @@ import { useCheckAuth } from './hooks'
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
 // Pages
-const Register = React.lazy(() => import('../src/auth/pages/RegisterPage'))
+const Register = React.lazy(() => import('./auth/pages/RegisterPage'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
-const Login = React.lazy(() => import('../src/auth/pages/LoginPage'))
+const Login = React.lazy(() => import('./auth/pages/LoginPage'))
 
 const App = () => {
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
   const storedTheme = useSelector((state) => state.theme)
   const { status } = useCheckAuth()
-  console.log("🚀 ~ App ~ status:", status && status === "authenticated");
+
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.href.split('?')[1])
-    const theme = urlParams.get('theme') && urlParams.get('theme').match(/^[A-Za-z0-9\s]+/)[0]
+    const theme = urlParams.get('/') && urlParams.get('/').match(/^[A-Za-z0-9\s]+/)[0]
     if (theme) {
       setColorMode(theme)
     }

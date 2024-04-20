@@ -87,7 +87,7 @@ const RegisterPage = () => {
           <button type="submit">Register</button> {/* Corrección: Eliminado el onClick innecesario */}
         </div>
         <div className="link-group">
-          <a href="/auth/login#/login">
+          <a href="/auth/login">
             Ya tienes una cuenta? Inicia sesión aquí
           </a>
         </div>
