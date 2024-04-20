@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../store/auth/authSlice";
 import { Fireauth } from "../services/firebase/config";
-import { RootState } from "../types/types";
+import { RootState } from "../types";
+
 
 export const useCheckAuth = () => {
 

@@ -1,4 +1,5 @@
 export interface Colombia {
+    find(arg0: (president: { endPeriodDate: null; }) => boolean): unknown;
     id: number;
     name: string;
     description: string;

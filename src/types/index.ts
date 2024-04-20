@@ -18,6 +18,8 @@ export interface SideBarCard {
 }
 
 export interface RootState {
+    sidebarShow: any;
+    sidebarUnfoldable: any;
     changeState: any;
     auth: {
         status: string;

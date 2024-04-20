@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { CRow, CCol, CCard, CCardHeader, CCardBody, CFormInput, CButton, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CPagination, CPaginationItem, CWidgetStatsF } from '@coreui/react';
+import { CRow, CCol, CCard, CCardHeader, CCardBody, CFormInput, CButton, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CPagination, CPaginationItem } from '@coreui/react';
 import ColombiaService from '../../../services/colombia.service';
 import { City } from '../../../models/city.model';
 import { Page } from '../../../models/page.model';
-import CIcon from '@coreui/icons-react';
-import { cilChartPie } from '@coreui/icons';
 
 const Cities = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [page, setPage] = useState<number>(1);
+  const [page] = useState<number>(1);
   const [cities, setCities] = useState<City[]>([]);
   const [pageData, setPageData] = useState<Page<null> | undefined>(undefined);
   const [pages, setPages] = useState<number[]>([]);
   const [searchText, setSearchText] = useState<string>('');
+  const [filtering, setFiltering] = useState<boolean>(false);
 
   const onPageChange = (page: number) => {
     downloadCities(page);
@@ -21,6 +20,7 @@ const Cities = () => {
 
   const downloadCities = async (page: number): Promise<void> => {
     setLoading(true);
+    setError(false);
     ColombiaService.getCities(page)
       .then((data) => {
         if (data) {
@@ -40,28 +40,36 @@ const Cities = () => {
   };
 
   const searchCities = async (text: string): Promise<void> => {
+    setFiltering(true);
+    setLoading(true);
+    setError(false);
+
     if (text.trim().length >= 4) {
       ColombiaService.searchCities(text)
         .then((data) => {
           if (data) {
-            setCities(data);
+            setCities(Array.isArray(data) ? data : [data]);
             setLoading(false);
           } else {
             setCities([]);
-            setLoading(false);
             setError(true);
+            setLoading(false);
           }
         })
         .catch(() => {
           setCities([]);
-          setLoading(false);
           setError(true);
+          setLoading(false);
+        })
+        .finally(() => {
+          setFiltering(false);
         });
     } else {
-      // Si el texto de búsqueda está vacío, descarga todas las ciudades
-      downloadCities(page); // Descarga todas las ciudades al estado cities
+      downloadCities(page);
+      setFiltering(false);
     }
   };
+
   useEffect(() => {
     if (pageData) {
       const pageCount = Math.ceil(pageData.totalRecords / pageData.pageSize);
@@ -74,15 +82,11 @@ const Cities = () => {
   }, [pageData]);
 
   useEffect(() => {
-    (async () => {
-      await downloadCities(page);
-    })();
+    downloadCities(page);
   }, [page]);
 
   useEffect(() => {
-    (async () => {
-      await searchCities(searchText);
-    })();
+    searchCities(searchText);
   }, [searchText]);
 
   const handleSearch = () => {
@@ -95,6 +99,7 @@ const Cities = () => {
         <CCardHeader>
           Lista de ciudades de Colombia
         </CCardHeader>
+
         <CCardBody>
           <CRow className='mb-4'>
             <CCol xs={10}>
@@ -108,37 +113,50 @@ const Cities = () => {
               <CButton color="primary" type="button" onClick={handleSearch}>Buscar</CButton>
             </CCol>
           </CRow>
-          <CRow>
-            <CCol xs={12}>
-              <CTable>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">id</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Nombre</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  {cities.map((city, index) => (
-                    <CTableRow key={city.id}>
-                      <CTableDataCell>{city.id}</CTableDataCell>
-                      <CTableDataCell>{city.name}</CTableDataCell>
-                    </CTableRow>
-                  ))}
-                </CTableBody>
-              </CTable>
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol xs={12}>
-              <CPagination align="center" aria-label="Page navigation example">
-                {pages.map((pageNumber) => (
-                  <CPaginationItem key={pageNumber} onClick={() => onPageChange(pageNumber)}>{pageNumber}</CPaginationItem>
-                ))}
-              </CPagination>
-            </CCol>
-          </CRow>
+          {loading ? (
+            <div>Cargando...</div>
+          ) : (
+            <CRow>
+              <CCol xs={12}>
+                {error ? (
+                  <div>Error al cargar los datos.</div>
+                ) : (
+                  <>
+                    {cities.length > 0 ? (
+                      <CTable>
+                        <CTableHead>
+                          <CTableRow>
+                            <CTableHeaderCell scope="col">id</CTableHeaderCell>
+                            <CTableHeaderCell scope="col">Nombre</CTableHeaderCell>
+                          </CTableRow>
+                        </CTableHead>
+                        <CTableBody>
+                          {cities.map((city) => (
+                            <CTableRow key={city.id}>
+                              <CTableDataCell>{city.id}</CTableDataCell>
+                              <CTableDataCell>{city.name}</CTableDataCell>
+                            </CTableRow>
+                          ))}
+                        </CTableBody>
+                      </CTable>
+                    ) : (
+                      <div>No se encontraron ciudades.</div>
+                    )}
+                  </>
+                )}
+              </CCol>
+            </CRow>
+          )}
         </CCardBody>
       </CCard>
+      {!filtering && cities.length === pageData?.pageSize && pages.length > 0 && (
+        <CPagination align="center" aria-label="Page navigation example">
+          {pages.map((pageNumber) => (
+            <CPaginationItem key={pageNumber} onClick={() => onPageChange(pageNumber)}>{pageNumber}</CPaginationItem>
+          ))}
+        </CPagination>
+      )}
+
     </>
   );
 };

@@ -41,7 +41,7 @@ const Dashboard = () => {
     ColombiaService.getTotalCities()
       .then((data) => {
         if (data) {
-          setCities(data);
+          setCities(Array.isArray(data) ? data : [data]);
           setLoading(false);
         } else {
           setError(true);
@@ -77,6 +77,7 @@ const Dashboard = () => {
 
         {!loading && colombiaInfo &&
           <>
+
             <CCol sm={12} md={3}>
               <CWidgetStatsF
                 className="mb-3"
@@ -172,6 +173,13 @@ const Dashboard = () => {
             </CCard>
           </>
         }
+        {!loading && error && (
+          <CCol xs={12}>
+            <CCard className="mb-4">
+              <CCardBody className="d-flex justify-content-center">Hubo un error al cargar la información. Intenta nuevamente.</CCardBody>
+            </CCard>
+          </CCol>
+        )}
       </CRow>
     </>
   )

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { CLink } from '@coreui/react'
 
-const DocsLink = (props) => {
+const DocsLink = (props: { [x: string]: any; href: any; name: any; text: any }) => {
   const { href, name, text, ...rest } = props
 
   const _href = name ? `https://coreui.io/react/docs/components/${name}` : href
