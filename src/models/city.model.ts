@@ -12,4 +12,6 @@ export interface City {
     indigenousReservations: null;
     airports: null;
     radios: null;
+    departmens: null;
+    country: null;
 }

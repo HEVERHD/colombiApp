@@ -70,7 +70,7 @@ npm run build
 npx serve
 ```
 
-### \*_Esta pantalla solo sera visible si estas autenticado, el cual lo puedes hacer en la pantalla de  Login o Registrate._
+### \*_Esta pantalla solo sera visible si estas autenticado, el cual lo puedes hacer en la pantalla de  Login o Registrate atravez de google o crear una cuenta._
 
 <img src="https://github.com/HEVERHD/colombiApp/blob/main/src/assets/dashColombiApp.png" alt="Texto alternativo" width="300">
 
