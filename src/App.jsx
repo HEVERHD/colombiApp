@@ -59,7 +59,6 @@ const App = () => {
                 <Route exact path="/404" name="Page 404" element={<Page404 />} />
               </>
           }
-
         </Routes>
       </Suspense>
     </BrowserRouter>
