@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { CRow, CCol, CCard, CCardHeader, CCardBody, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CImage } from '@coreui/react';
+import { useEffect, useState } from 'react';
+import { CRow, CCol, CCard, CCardHeader, CCardBody, CTable, CTableBody, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react';
 import ColombiaService from '../../../services/colombia.service';
 import { Presidents } from '../../../models/president.model';
 import PresidentTable from './PresidentsTable';
 
-interface PresidentProps {
-  president: Presidents;
-}
 
 const PresidentsList = () => {
   const [presidents, setPresidents] = useState<Presidents[]>([]);

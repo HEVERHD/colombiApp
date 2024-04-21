@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CRow, CCol, CCard, CCardHeader, CCardBody, CFormInput, CButton, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CPagination, CPaginationItem } from '@coreui/react';
+import { CRow, CCol, CCard, CCardHeader, CCardBody, CFormInput, CButton, CPagination, CPaginationItem } from '@coreui/react';
 import ColombiaService from '../../../services/colombia.service';
 import { City } from '../../../models/city.model';
 import { Page } from '../../../models/page.model';
