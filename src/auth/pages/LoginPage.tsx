@@ -73,7 +73,7 @@ const Login = () => {
             </button>
           </div>
           <div className="link-group">
-            <a href="/register">
+            <a href="/#register">
               ¿No tienes una cuenta? Regístrate aquí
             </a>
           </div>

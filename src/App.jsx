@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react'
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { CSpinner, useColorModes } from '@coreui/react'
@@ -35,33 +35,30 @@ const App = () => {
   }, [])
 
   return (
+    <Suspense
+      fallback={
+        <div className="pt-3 text-center">
+          <CSpinner color="primary" variant="grow" />
+        </div>
+      }
+    >
 
-    <BrowserRouter>
-      <Suspense
-        fallback={
-          <div className="pt-3 text-center">
-            <CSpinner color="primary" variant="grow" />
-          </div>
+
+      <Routes>
+        {
+          status === "authenticated"
+            ?
+            <>
+              <Route path="*" name="Home" element={<DefaultLayout />} />
+            </>
+            : <>
+              <Route exact path="/" name="Login Page" element={<Login />} />
+              <Route exact path="/register" name="Register Page" element={<Register />} />
+              <Route exact path="/404" name="Page 404" element={<Page404 />} />
+            </>
         }
-      >
-
-
-        <Routes>
-          {
-            status === "authenticated"
-              ?
-              <>
-                <Route path="*" name="Home" element={<DefaultLayout />} />
-              </>
-              : <>
-                <Route exact path="/" name="Login Page" element={<Login />} />
-                <Route exact path="/register" name="Register Page" element={<Register />} />
-                <Route exact path="/404" name="Page 404" element={<Page404 />} />
-              </>
-          }
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+      </Routes>
+    </Suspense>
   )
 }
 
