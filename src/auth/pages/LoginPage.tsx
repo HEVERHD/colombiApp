@@ -7,7 +7,7 @@ import { startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth
 import { RootState } from "../../types";
 
 
-export const Login = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -73,7 +73,9 @@ export const Login = () => {
             </button>
           </div>
           <div className="link-group">
-            <a href="/auth/login#/register">Create an account</a>
+            <a href="/register">
+              ¿No tienes una cuenta? Regístrate aquí
+            </a>
           </div>
         </form>
       </AuthLayout>

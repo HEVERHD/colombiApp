@@ -66,7 +66,7 @@ const RegisterPage = () => {
           <label htmlFor="email"> Correo Electrónico</label>
           <input
             placeholder="Correo electrónico"
-            type="email" // Corrección: Cambiado a type="email"
+            type="email"
             name="email"
             value={email}
             onChange={onInputChange}
@@ -89,7 +89,7 @@ const RegisterPage = () => {
           </button>
         </div>
         <div className="link-group">
-          <a href="/auth/login">
+          <a href="/">
             Ya tienes una cuenta? Inicia sesión aquí
           </a>
         </div>
