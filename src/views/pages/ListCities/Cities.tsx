@@ -4,6 +4,8 @@ import ColombiaService from '../../../services/colombia.service';
 import { City } from '../../../models/city.model';
 import { Page } from '../../../models/page.model';
 import { adapterCities } from '../../../adapters/cities.Adapter';
+import CitiesTable from './CitiesTable';
+
 
 const Cities = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -125,22 +127,7 @@ const Cities = () => {
                 ) : (
                   <>
                     {cities.length > 0 ? (
-                      <CTable>
-                        <CTableHead>
-                          <CTableRow>
-                            <CTableHeaderCell scope="col">id</CTableHeaderCell>
-                            <CTableHeaderCell scope="col">Nombre</CTableHeaderCell>
-                          </CTableRow>
-                        </CTableHead>
-                        <CTableBody>
-                          {cities.map((city) => (
-                            <CTableRow key={city.id}>
-                              <CTableDataCell>{city.id}</CTableDataCell>
-                              <CTableDataCell>{city.name}</CTableDataCell>
-                            </CTableRow>
-                          ))}
-                        </CTableBody>
-                      </CTable>
+                      <CitiesTable cities={cities} />
                     ) : (
                       <div>No se encontraron ciudades.</div>
                     )}
@@ -158,7 +145,6 @@ const Cities = () => {
           ))}
         </CPagination>
       )}
-
     </>
   );
 };
