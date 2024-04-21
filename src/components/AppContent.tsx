@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
-import routes from '../routes'
+import routes from '../routes/routes'
 
 const AppContent = () => {
   return (
@@ -21,7 +21,7 @@ const AppContent = () => {
               )
             )
           })}
-          <Route path="/" element={<Navigate to="dashboard" replace />} />
+          <Route path="/dashboard" element={<Navigate to="dashboard" replace />} />
         </Routes>
       </Suspense>
     </CContainer>
