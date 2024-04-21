@@ -10,6 +10,7 @@ import {
 } from '@coreui/react'
 import {
 
+  cibSuperuser,
   cilExitToApp,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
@@ -35,6 +36,13 @@ const AppHeaderDropdown = () => {
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle className="py-0 pe-0" caret={false}>
+        {
+          photoURL === null ?
+            <CAvatar size="md" color="info" className="me">
+              <CIcon icon={cibSuperuser} />
+            </CAvatar>
+            : null
+        }
         <CAvatar src={photoURL} size="md" />
       </CDropdownToggle>
       <CDropdownMenu className="pt-0">

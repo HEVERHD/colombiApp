@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CRow, CCol, CCard, CCardHeader, CCardBody, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CImage } from '@coreui/react';
 import ColombiaService from '../../../services/colombia.service';
-
 import { Presidents } from '../../../models/president.model';
+import PresidentTable from './PresidentsTable';
 
+interface PresidentProps {
+  president: Presidents;
+}
 
 const PresidentsList = () => {
   const [presidents, setPresidents] = useState<Presidents[]>([]);
@@ -16,7 +19,6 @@ const PresidentsList = () => {
       .then((data) => {
         if (data) {
           setPresidents(data as unknown as Presidents[]);
-
           setLoading(false);
         } else {
           setError(true);
@@ -65,13 +67,7 @@ const PresidentsList = () => {
                     </tr>
                   ) : (
                     presidents.map((president) => (
-                      <CTableRow key={president.id}>
-                        <CImage alt={president.name} src={president.image} width="80" height="80" className="rounded-circle" />
-                        <CTableDataCell>{president.name}</CTableDataCell>
-                        <CTableDataCell>{president.lastName}</CTableDataCell>
-                        <CTableDataCell>{president.startPeriodDate.toString()}</CTableDataCell>
-                        <CTableDataCell>{president.politicalParty}</CTableDataCell>
-                      </CTableRow>
+                      <PresidentTable key={president.id} president={president} />
                     ))
                   )}
                 </CTableBody>
