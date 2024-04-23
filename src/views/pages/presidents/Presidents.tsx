@@ -10,6 +10,8 @@ const PresidentsList = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
+
+
   const getTotalPresident = async (): Promise<void> => {
     setLoading(true);
     ColombiaService.getPresidents()

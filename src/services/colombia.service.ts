@@ -36,6 +36,18 @@ export default class ColombiaService {
       });
   }
 
+  public static async getPresidentsSearch(year: number): Promise<Colombia | undefined> {
+    return fetch(`${ColombiaService.API_ENDPOINT}/president/year${year}`)
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      })
+      .catch((e) => {
+        console.error(`Error getting year  ${year} presidents:`, e);
+        return undefined;
+      });
+  }
+
   public static async getCities(page: number): Promise<Page<City> | undefined> {
     return fetch(`${ColombiaService.API_ENDPOINT}/City/PagedList?page=${page}&pageSize=${ColombiaService.PAGE_SIZE}`)
       .then((response) => response.json())
@@ -55,7 +67,7 @@ export default class ColombiaService {
         return data;
       })
       .catch((e) => {
-        console.error(`Error getting paginated cities:`, e);
+        console.error(`Error getting total cities:`, e);
         return undefined;
       });
   }
@@ -79,11 +91,9 @@ export default class ColombiaService {
         return data;
       })
       .catch((e) => {
-        console.error(`Error getting colombia info:`, e);
+        console.error(`Error getting Aiports:`, e);
         return undefined;
       });
   }
-
-
 
 }
